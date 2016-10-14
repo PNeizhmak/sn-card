@@ -1,0 +1,18 @@
+debug:
+server:
+  port: 3000
+  contextPath: /sncard
+spring:
+  social:
+    facebook:
+      appId: 334842110201184
+      appSecret: 1ba81f0a0ad4dadfacbcc352e5c6f4c8
+    twitter:
+      appId: SCDb7hjVavohd5L5loj2R7R2m
+      appSecret: neLjPsEwBzfnMD7khqxSDtJ7OOwLtQFswkm47GwGhSjRfSsUM3
+logging:
+  level:
+    org.springframework:
+      security: INFO
+      social: INFO
+    
