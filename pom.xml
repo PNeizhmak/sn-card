@@ -20,7 +20,7 @@
 
     <properties>
         <spring-social.version>1.1.4.RELEASE</spring-social.version>
-        <spring-social-facebook.version>2.0.3.RELEASE</spring-social-facebook.version>
+        <spring-social-facebook.version>caae078953</spring-social-facebook.version>
         <spring-social-linkedin.version>1.0.0.RELEASE</spring-social-linkedin.version>
         <spring-social-twitter.version>1.1.2.RELEASE</spring-social-twitter.version>
 
@@ -45,6 +45,10 @@
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
         </repository>
     </repositories>
 
@@ -72,7 +76,7 @@
             <version>${spring-social.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.social</groupId>
+            <groupId>com.github.PNeizhmak</groupId>
             <artifactId>spring-social-facebook</artifactId>
             <version>${spring-social-facebook.version}</version>
         </dependency>
@@ -190,10 +194,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-social-facebook</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-social-facebook</artifactId>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-social-twitter</artifactId>
