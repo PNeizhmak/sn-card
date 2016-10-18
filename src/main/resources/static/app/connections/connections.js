@@ -24,5 +24,16 @@ angular.module('sncard')
                         controller: 'ConnectionsController'
                     }
                 }
+            })
+            .state('connections.twitter', {
+                parent: 'connections',
+                url: '/twitter',
+                data: {},
+                views: {
+                    'content@': {
+                        templateUrl: 'app/connections/twitter/twitterConnect.html',
+                        controller: 'ConnectionsController'
+                    }
+                }
             });
     });
