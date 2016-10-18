@@ -1,0 +1,23 @@
+<br/>
+<div id="content">
+    <h3>Your LinkedIn Profile</h3>
+
+    <p>
+        {{message}}
+    </p>
+
+    <p>
+        Hello, <span ng-bind="(profile.firstName)">name</span>!
+    </p>
+
+    <img src="{{profile.profilePictureUrl}}"/>
+
+    <div>
+        <span>LinkedIn ID: </span><span ng-bind="profile.id"></span><br/>
+        <span>Email: </span><span ng-bind="profile.emailAddress"></span><br/>
+        <span>Public url: </span><span ng-bind="profile.publicProfileUrl"></span><br/>
+        <span>Industry: </span><span ng-bind="profile.industry"></span><br/>
+        <span>Headline: </span><span ng-bind="profile.headline"></span><br/>
+        <span>Summary: </span><span ng-bind="profile.summary"></span><br/>
+    </div>
+</div>

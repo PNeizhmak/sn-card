@@ -35,5 +35,16 @@ angular.module('sncard')
                         controller: 'ConnectionsController'
                     }
                 }
+            })
+            .state('connections.linkedin', {
+                parent: 'connections',
+                url: '/linkedin',
+                data: {},
+                views: {
+                    'content@': {
+                        templateUrl: 'app/connections/linkedin/linkedinConnect.html',
+                        controller: 'ConnectionsController'
+                    }
+                }
             });
     });

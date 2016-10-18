@@ -10,6 +10,9 @@ spring:
     twitter:
       appId: SCDb7hjVavohd5L5loj2R7R2m
       appSecret: neLjPsEwBzfnMD7khqxSDtJ7OOwLtQFswkm47GwGhSjRfSsUM3
+    linkedin:
+      appId: 77kzjjlbxcucwo
+      appSecret: jv3rh24LNr5MBXvE
 logging:
   level:
     org.springframework:
