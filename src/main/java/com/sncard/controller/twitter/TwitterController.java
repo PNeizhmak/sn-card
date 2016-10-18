@@ -26,15 +26,14 @@ public class TwitterController {
     // Yahoo Where On Earth ID representing the entire world
     private static final long WORLDWIDE_WOE = 1L;
 
-    @Inject
-    private ConnectionRepository connectionRepository;
+    private final ConnectionRepository connectionRepository;
     private final Twitter twitter;
-
     private TwitterProfile profile;
 
     @Inject
-    public TwitterController(Twitter twitter) {
+    public TwitterController(ConnectionRepository connectionRepository, Twitter twitter) {
         this.twitter = twitter;
+        this.connectionRepository = connectionRepository;
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
@@ -84,7 +83,7 @@ public class TwitterController {
         return twitter.searchOperations().getLocalTrends(WORLDWIDE_WOE);
     }
 
-    public static class TweetContent implements Serializable {
+    private static class TweetContent implements Serializable {
         private static final long serialVersionUID = 1L;
         private String text;
 

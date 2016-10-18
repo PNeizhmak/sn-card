@@ -18,8 +18,8 @@ import java.util.List;
 @RequestMapping("/api/connect/facebook")
 public class FacebookController {
 
-    private ConnectionRepository connectionRepository;
-    private Facebook facebook;
+    private final ConnectionRepository connectionRepository;
+    private final Facebook facebook;
     private User profile;
 
     @Inject
