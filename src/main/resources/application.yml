@@ -2,17 +2,18 @@ debug:
 server:
   port: 3000
   contextPath: /sncard
-spring:
-  social:
-    facebook:
-      appId: 334842110201184
-      appSecret: 1ba81f0a0ad4dadfacbcc352e5c6f4c8
-    twitter:
-      appId: SCDb7hjVavohd5L5loj2R7R2m
-      appSecret: neLjPsEwBzfnMD7khqxSDtJ7OOwLtQFswkm47GwGhSjRfSsUM3
-    linkedin:
-      appId: 77kzjjlbxcucwo
-      appSecret: jv3rh24LNr5MBXvE
+facebook:
+  appId: 334842110201184
+  appSecret: 1ba81f0a0ad4dadfacbcc352e5c6f4c8
+twitter:
+  appId: SCDb7hjVavohd5L5loj2R7R2m
+  appSecret: neLjPsEwBzfnMD7khqxSDtJ7OOwLtQFswkm47GwGhSjRfSsUM3
+linkedin:
+  appId: 77kzjjlbxcucwo
+  appSecret: jv3rh24LNr5MBXvE
+google:
+  appId: 3241245215-gnk6l1d10vm6p2j8h6t1j9snb05ml1k8.apps.googleusercontent.com
+  appSecret: FxU4tH7WoFjp-eVuTK5OoiuN
 logging:
   level:
     org.springframework:

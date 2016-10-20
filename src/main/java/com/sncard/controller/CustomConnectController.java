@@ -18,9 +18,7 @@ import javax.inject.Inject;
 public class CustomConnectController extends ConnectController {
 
     @Inject
-    public CustomConnectController(
-            ConnectionFactoryLocator connectionFactoryLocator,
-            ConnectionRepository connectionRepository) {
+    public CustomConnectController(ConnectionFactoryLocator connectionFactoryLocator, ConnectionRepository connectionRepository) {
         super(connectionFactoryLocator, connectionRepository);
     }
 

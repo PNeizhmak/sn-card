@@ -18,13 +18,11 @@ import javax.inject.Inject;
 public class LinkedinController {
 
     private ConnectionRepository connectionRepository;
-    private LinkedIn linkedIn;
     private LinkedInProfile inProfile;
 
     @Inject
-    public LinkedinController(ConnectionRepository connectionRepository, LinkedIn linkedIn) {
+    public LinkedinController(ConnectionRepository connectionRepository) {
         this.connectionRepository = connectionRepository;
-        this.linkedIn = linkedIn;
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)

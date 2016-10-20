@@ -29,9 +29,7 @@ public class GeneralConnectController {
     private final ConnectionRepository connectionRepository;
 
     @Inject
-    public GeneralConnectController(
-            ConnectionFactoryLocator connectionFactoryLocator,
-            ConnectionRepository connectionRepository) {
+    public GeneralConnectController(ConnectionFactoryLocator connectionFactoryLocator, ConnectionRepository connectionRepository) {
         this.connectionFactoryLocator = connectionFactoryLocator;
         this.connectionRepository = connectionRepository;
     }
