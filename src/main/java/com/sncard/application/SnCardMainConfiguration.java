@@ -17,7 +17,6 @@ import javax.sql.DataSource;
  * @author Pavel Neizhmak
  */
 @Configuration
-@PropertySource("classpath:application.yml")
 @EnableTransactionManagement
 public class SnCardMainConfiguration {
 

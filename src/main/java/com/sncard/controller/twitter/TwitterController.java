@@ -27,12 +27,11 @@ public class TwitterController {
     private static final long WORLDWIDE_WOE = 1L;
 
     private final ConnectionRepository connectionRepository;
-    private final Twitter twitter;
     private TwitterProfile profile;
 
     @Inject
-    public TwitterController(ConnectionRepository connectionRepository, Twitter twitter) {
-        this.twitter = twitter;
+    public TwitterController(ConnectionRepository connectionRepository) {
+//        this.twitter = twitter;
         this.connectionRepository = connectionRepository;
     }
 
@@ -51,12 +50,12 @@ public class TwitterController {
     @RequestMapping(value = "/tweets", method = RequestMethod.GET)
     public TimeLine fetchTimeLine() {
         final TimeLine timeline = new TimeLine();
-        TimelineOperations timelineOperations = twitter.timelineOperations();
+//        TimelineOperations timelineOperations = twitter.timelineOperations();
 
-        timeline.addTweets(timelineOperations.getHomeTimeline());
-        timeline.addTweets(timelineOperations.getUserTimeline());
-        timeline.addTweets(timelineOperations.getMentions());
-        timeline.addTweets(timelineOperations.getFavorites());
+//        timeline.addTweets(timelineOperations.getHomeTimeline());
+//        timeline.addTweets(timelineOperations.getUserTimeline());
+//        timeline.addTweets(timelineOperations.getMentions());
+//        timeline.addTweets(timelineOperations.getFavorites());
 
         return timeline;
     }
@@ -64,23 +63,26 @@ public class TwitterController {
     @RequestMapping(value = "/tweet", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public void postTweet(@RequestBody TweetContent content) {
         if (content != null) {
-            twitter.timelineOperations().updateStatus(content.getText());
+//            twitter.timelineOperations().updateStatus(content.getText());
         }
     }
 
     @RequestMapping(value = "/friends", method = RequestMethod.GET)
     public CursoredList<TwitterProfile> friends(Model model) {
-        return twitter.friendOperations().getFriends();
+//        return twitter.friendOperations().getFriends();
+        return null;
     }
 
     @RequestMapping(value = "/followers", method = RequestMethod.GET)
     public CursoredList<TwitterProfile> followers(Model model) {
-        return twitter.friendOperations().getFollowers();
+//        return twitter.friendOperations().getFollowers();
+        return null;
     }
 
     @RequestMapping(value = "/trends", method = RequestMethod.GET)
     public Trends showTrends(Model model) {
-        return twitter.searchOperations().getLocalTrends(WORLDWIDE_WOE);
+//        return twitter.searchOperations().getLocalTrends(WORLDWIDE_WOE);
+        return null;
     }
 
     private static class TweetContent implements Serializable {

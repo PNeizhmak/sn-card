@@ -13,7 +13,6 @@ import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
 import org.springframework.social.connect.support.ConnectionFactoryRegistry;
-import org.springframework.social.connect.web.ConnectController;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
@@ -31,6 +30,7 @@ import javax.sql.DataSource;
 @PropertySources({
         @PropertySource("classpath:application.yml")
 })
+@ComponentScan(basePackages = {"com.sncard"})
 public class SnCardSocialConfiguration {
 
     private final Environment env;
@@ -47,7 +47,6 @@ public class SnCardSocialConfiguration {
     public ConnectionFactoryLocator connectionFactoryLocator() {
 
         ConnectionFactoryRegistry registry = new ConnectionFactoryRegistry();
-
         registry.addConnectionFactory(new TwitterConnectionFactory(env.getProperty("twitter.appId"), env.getProperty("twitter.appSecret")));
         registry.addConnectionFactory(new FacebookConnectionFactory(env.getProperty("facebook.appId"), env.getProperty("facebook.appSecret")));
         registry.addConnectionFactory(new LinkedInConnectionFactory(env.getProperty("linkedin.appId"), env.getProperty("linkedin.appSecret")));
@@ -57,12 +56,13 @@ public class SnCardSocialConfiguration {
     }
 
     @Bean
+    @Scope(value = "request", proxyMode = ScopedProxyMode.INTERFACES)
     public UsersConnectionRepository usersConnectionRepository() {
         return new JdbcUsersConnectionRepository(dataSource, connectionFactoryLocator(), Encryptors.noOpText());
     }
 
     @Bean
-    @Scope(value = "request")
+    @Scope(value = "request", proxyMode = ScopedProxyMode.INTERFACES)
     public ConnectionRepository connectionRepository() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null) {
@@ -76,10 +76,5 @@ public class SnCardSocialConfiguration {
     public Facebook facebook(ConnectionRepository repository) {
         Connection<Facebook> connection = repository.findPrimaryConnection(Facebook.class);
         return connection != null ? connection.getApi() : null;
-    }
-
-    @Bean
-    public ConnectController connectController() {
-        return new ConnectController(connectionFactoryLocator(), connectionRepository());
     }
 }

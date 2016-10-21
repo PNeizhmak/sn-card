@@ -1,5 +1,6 @@
 package com.sncard.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.connect.web.ConnectController;
