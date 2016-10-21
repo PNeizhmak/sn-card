@@ -2,7 +2,8 @@ package com.sncard.application;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -20,7 +21,8 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 public class SnCardMainConfiguration {
 
-    @Bean(destroyMethod = "shutdown")
+    @Bean
+    @Scope(value = "request", proxyMode = ScopedProxyMode.INTERFACES)
     public DataSource dataSource() {
         EmbeddedDatabaseFactory factory = new EmbeddedDatabaseFactory();
         factory.setDatabaseName("sncard_db");

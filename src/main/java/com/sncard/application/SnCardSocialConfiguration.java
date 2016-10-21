@@ -3,8 +3,6 @@ package com.sncard.application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.social.config.annotation.EnableSocial;
 import org.springframework.social.connect.Connection;
@@ -44,6 +42,7 @@ public class SnCardSocialConfiguration {
     }
 
     @Bean
+    @Scope(value = "singleton", proxyMode = ScopedProxyMode.INTERFACES)
     public ConnectionFactoryLocator connectionFactoryLocator() {
 
         ConnectionFactoryRegistry registry = new ConnectionFactoryRegistry();
@@ -64,11 +63,11 @@ public class SnCardSocialConfiguration {
     @Bean
     @Scope(value = "request", proxyMode = ScopedProxyMode.INTERFACES)
     public ConnectionRepository connectionRepository() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null) {
-            throw new IllegalStateException("Unable to get a ConnectionRepository: no user signed in");
-        }
-        return usersConnectionRepository().createConnectionRepository(authentication.getName());
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (authentication == null) {
+//            throw new IllegalStateException("Unable to get a ConnectionRepository: no user signed in");
+//        }
+        return usersConnectionRepository().createConnectionRepository("pn");
     }
 
     @Bean
