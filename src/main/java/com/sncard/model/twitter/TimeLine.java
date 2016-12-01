@@ -1,5 +1,7 @@
 package com.sncard.model.twitter;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.social.twitter.api.Tweet;
 
@@ -13,7 +15,13 @@ import java.util.List;
 public class TimeLine implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    @Getter
+    @Setter
     private List<Tweet> tweets;
+
+    @Getter
+    @Setter
     private String type;
 
     public TimeLine() {
@@ -25,25 +33,10 @@ public class TimeLine implements Serializable {
         addTweets(tweets);
     }
 
-    public List<Tweet> getTweets() {
-        return tweets;
-    }
-
-    public void setTweets(List<Tweet> tweets) {
-        this.tweets = tweets;
-    }
-
     public void addTweets(List<Tweet> tweets) {
         if (CollectionUtils.isNotEmpty(tweets)) {
             this.tweets.addAll(tweets);
         }
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 }

@@ -1,14 +1,14 @@
 package com.sncard.controller.linkedin;
 
-import org.springframework.social.connect.Connection;
+import javax.inject.Inject;
+
+import lombok.val;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.linkedin.api.LinkedIn;
 import org.springframework.social.linkedin.api.LinkedInProfile;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.inject.Inject;
 
 /**
  * @author Pavel Neizhmak
@@ -29,7 +29,7 @@ public class LinkedinController {
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public LinkedInProfile fetchProfile() {
-        Connection<LinkedIn> connection = connectionRepository.findPrimaryConnection(LinkedIn.class);
+        val connection = connectionRepository.findPrimaryConnection(LinkedIn.class);
         if (connection == null) {
             return null;
         }

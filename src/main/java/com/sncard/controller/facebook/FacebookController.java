@@ -1,15 +1,16 @@
 package com.sncard.controller.facebook;
 
-import org.springframework.social.connect.Connection;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import lombok.val;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.facebook.api.*;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.inject.Inject;
-import java.util.List;
 
 /**
  * @author Pavel Neizhmak
@@ -30,7 +31,7 @@ public class FacebookController {
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public User fetchProfile() {
-        Connection<Facebook> connection = connectionRepository.findPrimaryConnection(Facebook.class);
+        val connection = connectionRepository.findPrimaryConnection(Facebook.class);
         if (connection == null) {
             return null;
         }

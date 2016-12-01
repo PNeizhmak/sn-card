@@ -2,9 +2,18 @@ package com.sncard.model;
 
 import java.io.Serializable;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * @author Pavel Neizhmak
  */
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ConnectionInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -13,40 +22,4 @@ public class ConnectionInfo implements Serializable {
     private String displayName = "No Name";
     private boolean isConfigured;
 
-    public ConnectionInfo() {
-    }
-
-    public ConnectionInfo(String provider, String displayName) {
-        this.provider = provider;
-        this.displayName = displayName;
-    }
-
-    public boolean isConfigured() {
-        return isConfigured;
-    }
-
-    public void setConfigured(boolean isConfigured) {
-        this.isConfigured = isConfigured;
-    }
-
-    public String getProvider() {
-        return provider;
-    }
-
-    public void setProvider(String provider) {
-        this.provider = provider;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
-    public ConnectionInfo markAsConfigured() {
-        this.isConfigured = true;
-        return this;
-    }
 }

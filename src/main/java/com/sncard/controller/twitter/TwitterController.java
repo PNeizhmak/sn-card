@@ -5,8 +5,9 @@ package com.sncard.controller.twitter;
  */
 
 import com.sncard.model.twitter.TimeLine;
+import lombok.Data;
+import lombok.val;
 import org.springframework.http.MediaType;
-import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.twitter.api.*;
 import org.springframework.ui.Model;
@@ -38,7 +39,7 @@ public class TwitterController {
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public TwitterProfile fetchProfile(Principal currentUser, Model model) {
-        Connection<Twitter> connection = connectionRepository.findPrimaryConnection(Twitter.class);
+        val connection = connectionRepository.findPrimaryConnection(Twitter.class);
         if (connection == null) {
             return null;
         }
@@ -50,8 +51,8 @@ public class TwitterController {
 
     @RequestMapping(value = "/tweets", method = RequestMethod.GET)
     public TimeLine fetchTimeLine() {
-        final TimeLine timeline = new TimeLine();
-        TimelineOperations timelineOperations = twitter.timelineOperations();
+        val timeline = new TimeLine();
+        val timelineOperations = twitter.timelineOperations();
 
         timeline.addTweets(timelineOperations.getHomeTimeline());
         timeline.addTweets(timelineOperations.getUserTimeline());
@@ -83,16 +84,9 @@ public class TwitterController {
         return twitter.searchOperations().getLocalTrends(WORLDWIDE_WOE);
     }
 
+    @Data
     private static class TweetContent implements Serializable {
         private static final long serialVersionUID = 1L;
         private String text;
-
-        public String getText() {
-            return text;
-        }
-
-        public void setText(String text) {
-            this.text = text;
-        }
     }
 }

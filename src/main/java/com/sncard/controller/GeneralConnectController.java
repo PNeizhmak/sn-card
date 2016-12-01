@@ -1,6 +1,7 @@
 package com.sncard.controller;
 
 import com.sncard.model.ConnectionInfo;
+import lombok.val;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.http.MediaType;
@@ -39,22 +40,23 @@ public class GeneralConnectController {
     @RequestMapping(produces = {MediaType.APPLICATION_JSON_VALUE}, method = RequestMethod.GET)
     @ResponseBody
     public Set<ConnectionInfo> connect() {
-        final Set<ConnectionInfo> response = new HashSet<>();
-        final Set<String> registeredProviderIds = connectionFactoryLocator.registeredProviderIds();
-        final Map<String, List<Connection<?>>> connections = connectionRepository.findAllConnections();
+        val response = new HashSet<ConnectionInfo>();
+        val registeredProviderIds = connectionFactoryLocator.registeredProviderIds();
+        val connections = connectionRepository.findAllConnections();
+        val builder = ConnectionInfo.builder();
         if (CollectionUtils.isNotEmpty(registeredProviderIds)) {
-            for (String providerId : registeredProviderIds) {
-                ConnectionInfo connectionInfo = new ConnectionInfo(providerId, "Alias");
-                List<Connection<?>> connectionList = connections.get(providerId);
+            for (val providerId : registeredProviderIds) {
+                builder.provider(providerId).displayName("Alias");
+                val connectionList = connections.get(providerId);
                 if (CollectionUtils.isNotEmpty(connectionList)) {
-                    String displayName = connectionList.get(0).getDisplayName();
+                    val displayName = connectionList.get(0).getDisplayName();
                     if (StringUtils.isNotBlank(displayName)) {
-                        connectionInfo.setDisplayName(displayName);
+                        builder.displayName(displayName);
                     }
-                    connectionInfo.markAsConfigured();
+                    builder.isConfigured(true);
                 }
 
-                response.add(connectionInfo);
+                response.add(builder.build());
             }
         }
         return response;
